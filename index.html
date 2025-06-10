@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quang Trường & Yến Nhi</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <style>
+    @font-face {
+      font-family: 'Parisienne';
+      src: url('fonts/Parisienne-Regular.woff2') format('woff2'),
+           url('fonts/Parisienne-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Blacker Sans Display';
+      src: url('fonts/BlackerSansDisplay-Bold.woff2') format('woff2'),
+           url('fonts/BlackerSansDisplay-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Blacker Sans Display';
+      src: url('fonts/BlackerSansDisplay-Regular.woff2') format('woff2'),
+           url('fonts/BlackerSansDisplay-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      src: url('fonts/PlayfairDisplay-Bold.woff2') format('woff2'),
+           url('fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Playfair Display';
+      src: url('fonts/PlayfairDisplay-Regular.woff2') format('woff2'),
+           url('fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Noto Serif Display';
+      src: url('fonts/NotoSerifDisplay-Regular.woff2') format('woff2'),
+           url('fonts/NotoSerifDisplay-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Noto Serif Display';
+      src: url('fonts/NotoSerifDisplay-Bold.woff2') format('woff2'),
+           url('fonts/NotoSerifDisplay-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Luxurious Script';
+      src: url('fonts/LuxuriousScript-Regular.woff2') format('woff2'),
+           url('fonts/LuxuriousScript-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Perandory Condensed';
+      src: url('fonts/PerandoryCondensed-Regular.woff2') format('woff2'),
+           url('fonts/PerandoryCondensed-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Andasia';
+      src: url('fonts/Andasia-Regular.woff2') format('woff2'),
+           url('fonts/Andasia-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Balle';
+      src: url('fonts/Ballet-Regular.woff2') format('woff2'),
+           url('fonts/Ballet-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f6f5f2;
+      min-height: 100vh;
+      font-family: 'Blacker Sans Display', Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .wedding-card {
+      width: 100%;
+      max-width: 430px;
+      aspect-ratio: 2/3;
+      background: #f6f5f2;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+    }
+    .wedding-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .wedding-title, .wedding-info {
+      position: relative;
+      z-index: 2;
+      color: #f6f5f2;
+      text-shadow: 0 2px 12px #0007;
+    }
+    .wedding-title {
+      font-family: 'Parisienne', cursive;
+      font-size: 58px;
+      margin-top: 5px;
+      margin-bottom: 0.5em;
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .wedding-info {
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: 38px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .wedding-names {
+      font-family: 'Blacker Sans Display', Arial, sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.3em;
+    }
+    .wedding-date {
+      font-family: 'Blacker Sans Display', Arial, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    @media (max-width: 480px) {
+      .wedding-card,
+      .pages,
+      .page2,
+      .page3,
+      .page4,
+      .page4-album,
+      .page5,
+      .page6 {
+        max-width: 100vw;
+        width: 100vw;
+        border-radius: 0;
+      }
+      .page4 {
+        min-height: 250px;
+      }
+      .page5-gif-wrapper {
+        width: 100vw !important;
+        max-width: 100vw !important;
+      }
+      .gallery-container,
+      .main-wrapper {
+        width: 100vw !important;
+        max-width: 100vw !important;
+      }
+    }
+    .pages {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background: #f6f5f2;
+      border-radius: 18px;
+      overflow: visible;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+      padding: 0;
+    }
+    .wedding-card, .page2 {
+      width: 100%;
+      max-width: 430px;
+      aspect-ratio: 2/3;
+      min-height: unset;
+      background: #f6f5f2;
+      border-radius: 0;
+      overflow: visible;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0;
+      box-shadow: none;
+      padding: 0;
+      flex: none;
+    }
+    .page2-flower, .page4-album-flower {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      margin-top: 0;
+      pointer-events: none;
+    }
+    .page2-logo {
+      width: 150px;
+      height: 120px;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+      display: block;
+    }
+    .page2-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #7e7d7b;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .page2-countdown {
+      position: relative;
+      width: 85%;
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cover-t {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      background: #f6f5f2;
+      z-index: 2;
+      border-radius: 0 0 0 10px;
+      pointer-events: none;
+    }
+    .page2-main-photo {
+      width: 100%;
+      height: auto;
+      flex: 1 1 0;
+      object-fit: cover;
+      border-radius: 0 0 18px 18px;
+      background: #f6f5f2;
+      align-self: stretch;
+      margin: 0;
+      min-height: 0;
+      max-height: 100%;
+      display: block;
+    }
+    .page3 {
+      width: 100%;
+      max-width: 430px;
+      aspect-ratio: 2/3;
+      background: #f6f5f2;
+      border-radius: 0;
+      overflow: visible;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0;
+      box-shadow: none;
+      padding: 0;
+      flex: none;
+    }
+    .page3-img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      height: auto;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+    .save-date-group {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding: 32px 0 0 24px;
+      box-sizing: border-box;
+    }
+    .save-date-stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1;
+    }
+    .save-date-save {
+      font-family: 'Perandory Condensed', serif;
+      font-size: 64px;
+      color: #f6f5f2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .save-date-middle {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: -18px;
+      margin-bottom: 0px;
+      height: 74px;
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .save-date-the {
+      font-family: 'Balle', cursive;
+      font-size: 74px;
+      color: #f6f5f2;
+      text-transform: lowercase;
+      margin: 0 10px 0 0;
+      line-height: 1;
+      display: inline-block;
+    }
+    .save-date-date {
+      font-family: 'Perandory Condensed', serif;
+      font-size: 64px;
+      color: #f6f5f2;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-block;
+    }
+    .page3-parents-row {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+      position: relative;
+    }
+    .page3-parents-col {
+      width: 48%;
+      text-align: center;
+      display: block;
+    }
+    .page3-parents-col.left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .page3-parents-col.right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .page3-parents-divider {
+      width: 1.5px;
+      background: #7e7d7b;
+      height: 70px;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    .page3-parents-title {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 14px;
+      color: #7e7d7b;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .page3-parents-content {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 12px;
+      color: #7e7d7b;
+      text-transform: none;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    .page3-invite {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 14px;
+      color: #7e7d7b;
+      margin: 18px 0 24px 0;
+      text-align: center;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .page3-names {
+      width: 100%;
+      text-align: center;
+      margin-top: 12px;
+    }
+    .page3-names-main {
+      font-family: 'Blacker Sans Display', Arial, sans-serif;
+      font-size: 36px;
+      color: #7e7d7b;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0;
+    }
+    .page3-names-and {
+      font-family: 'Luxurious Script', cursive;
+      font-size: 32px;
+      color: #7e7d7b;
+      text-transform: uppercase;
+      margin: 0 0 0 0;
+      display: block;
+    }
+    .page3-content {
+      width: 100%;
+      background: #f6f5f2;
+      padding: 30px 1px 0 1px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 3;
+      position: relative;
+    }
+    /* --- PAGE 4 --- */
+    .page4 {
+      width: 100%;
+      max-width: 430px;
+      min-height: 350px;
+      background: #f6f5f2;
+      border-radius: 0;
+      overflow: visible;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0;
+      box-shadow: none;
+    }
+    .page4-label, .page4-label2 {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 14px;
+      color: #7e7d7b;
+      margin-top: 12px;
+      margin-bottom: 8px;
+      text-align: center;
+      font-weight: 400;
+      text-transform: none;
+    }
+    .page4-label2 {
+      margin: 8px 0 0 0;
+    }
+    .page4-time-row {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+    .page4-time-main {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      margin-bottom: 0;
+    }
+    .page4-time-left, .page4-time-right, .page4-date {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 40px;
+      color: #7e7d7b;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .page4-time-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+      white-space: nowrap;
+    }
+    .page4-time-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+      white-space: nowrap;
+    }
+    .page4-date {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+      margin-bottom: 18px;
+      text-align: center;
+      width: 100%;
+    }
+    .page4-place {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 25px;
+      color: #7e7d7b;
+      font-weight: bold;
+      margin: 8px 0 0 0;
+      letter-spacing: 1px;
+      text-align: center;
+      display: block;
+      opacity: 0;
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1);
+      text-transform: uppercase;
+    }
+    .page4-address {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 12px;
+      color: #7e7d7b;
+      margin: 8px 0 0 0;
+      text-align: center;
+      display: block;
+      min-height: 24px;
+      text-transform: none;
+    }
+    .page4-address span {
+      opacity: 0;
+      display: inline-block;
+      animation: page4CharFade 0.04s linear forwards;
+    }
+    @keyframes page4CharFade {
+      to {
+        opacity: 1;
+      }
+    }
+    .page4-map-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      animation: page4MapBlink 0.6s infinite alternate;
+    }
+    .page4-map-icon {
+      width: 22px;
+      height: 22px;
+      filter: grayscale(0.5);
+      opacity: 0.7;
+      vertical-align: middle;
+    }
+    .page4-map-text {
+      font-family: 'Noto Serif Display', serif;
+      font-size: 18px;
+      color: #7e7d7b;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      opacity: 0.8;
+      text-decoration: none;
+      text-transform: none;
+    }
+    @keyframes page4MapBlink {
+      0% { opacity: 0.7; }
+      100% { opacity: 1; }
+    }
+    /* --- PAGE 4 ALBUM --- */
+    .page4-album {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      background: #f6f5f2;
+      border-radius: 0;
+      overflow: visible;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 0;
+      box-shadow: none;
+      padding: 0;
+    }
+    .page4-album-title {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .album-title-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      color: #7e7d7b;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 0 10px;
+      letter-spacing: 1px;
+    }
+    .album-title-of {
+      font-family: 'Andasia', cursive;
+      font-size: 25px;
+      color: #7e7d7b;
+      text-transform: none;
+      font-weight: 400;
+      font-style: italic;
+    }
+    .album-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: 18px;
+      margin-bottom: 0;
+      padding: 0 12px;
+    }
+    .album-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 48%;
+    }
+    .album-img {
+      width: 150vw;
+      max-width: 300px;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 0;
+      background: #f6f5f2;
+      position: relative;
+      z-index: 1;
+    }
+    .album-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      text-align: center;
+    }
+    .album-label {
+      font-family: 'Andasia', cursive;
+      font-size: 24px;
+      color: #7e7d7b;
+      text-transform: none;
+      font-weight: 400;
+      margin-bottom: 2px;
+      margin-top: 0;
+    }
+    .album-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #7e7d7b;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0px;
+    }
+    .album-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #7e7d7b;
+      text-transform: none;
+      font-weight: 400;
+      margin-bottom: 0;
+      margin-top: 2px;
+    }
+    .album-col-bride {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .album-col-groom {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .album-img-wide {
+      width: 100vw;
+      max-width: 430px;
+      aspect-ratio: 5/1;
+      object-fit: cover;
+      border-radius: 0;
+      background: #f6f5f2;
+      display: block;
+    }
+    .album-info.album-col-bride {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 220px;
+      margin-left: 10px;
+      margin-top: 6px;
+      text-align: center;
+      padding-right: 33px;
+    }
+    .main-image {
+      border-radius: 0 !important;
+    }
+    /* --- PAGE 6 FORM --- */
+    .page6-submit-button {
+      width: 100%;
+      padding: 16px;
+      background: #7e7d7b;
+      color: #f6f5f2;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Noto Serif Display',serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.3s ease;
+    }
+    .page6-submit-button:hover, .page6-submit-button:active {
+      background: #f7c9d1;
+      color: #7e7d7b;
+    }
+    @keyframes scaleThankYou {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    /* Hiệu ứng xuất hiện dùng transition và class .active */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-in-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .fade-in-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-in-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-in-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-down {
+      opacity: 0;
+      transform: translateY(-30px);
+      transition: opacity 2s cubic-bezier(0.4,0,0.2,1), transform 2s cubic-bezier(0.4,0,0.2,1);
+    }
+    .fade-in-down.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .form-input-normal {
+      font-weight: normal !important;
+    }
+    .form-input-normal:focus:not(:placeholder-shown),
+    .form-input-normal:not(:placeholder-shown),
+    .form-input-normal.filled {
+      font-weight: bold !important;
+    }
+    select.form-input-normal:focus,
+    select.form-input-normal.filled {
+      font-weight: bold !important;
+    }
+    .page4-divider {
+      width: 80%;
+      max-width: 320px;
+      height: 3px;
+      background: #b3b1ae;
+      margin: 8px auto 8px auto;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="pages">
+    <div class="wedding-card">
+      <img class="wedding-image" src="images/wedding-image.png" alt="Ảnh cưới Quang Trường & Yến Nhi">
+      <div class="wedding-title fade-in-down">We get married!</div>
+      <div class="wedding-info fade-in-up">
+        <div class="wedding-names">Quang Trường & Yến Nhi</div>
+        <div class="wedding-date" style="font-family: 'Blacker Sans Display', Arial, sans-serif;">26.06.2025</div>
+      </div>
+    </div>
+    <div class="page2">
+      <img class="page2-flower" src="images/page2-flower.png" alt="Hoa đầu trang">
+      <img class="page2-logo fade-in-up" src="images/page2-logo.png" alt="Logo cưới">
+      <div class="page2-text fade-in-up">
+        <div>WE WILL BECOME</div>
+        <div>HUSBAND AND WIFE IN</div>
+      </div>
+      <div class="page2-countdown fade-in-up">
+        <iframe src="https://canva-embed.com/api/iframe?url=https%3A%2F%2Fwww.tickcounter.com%2Fcountdown%2F7435011%2Fmy-countdown&amp;key=462812a26b593f2dbfbfcbb14f6d699a" style="width:100%;height:100%;border:0" allowfullscreen="allowfullscreen" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" title="Nội dung nhúng"></iframe>
+        <div class="cover-t"></div>
+      </div>
+      <img class="page2-main-photo" src="images/page2-main-photo.png" alt="Ảnh cưới lớn">
+    </div>
+    <div class="page3">
+      <div style="position:relative;width:100%;">
+        <img class="page3-img" src="images/page3-img.png" alt="Ảnh cưới ngang">
+        <div class="save-date-group">
+          <div class="save-date-stack">
+            <span class="save-date-save fade-in-left">SAVE</span>
+            <span class="save-date-middle fade-in-right">
+              <span class="save-date-the">the</span>
+              <span class="save-date-date">DATE</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="page3-content">
+        <div class="page3-parents-row">
+          <div class="page3-parents-col left fade-in-left">
+            <div class="page3-parents-title">NHÀ TRAI</div>
+            <div class="page3-parents-content">
+              Ông. Bùi Văn Toàn<br>
+              Bà. Hồ Thu Thủy<br><br>
+              TP.Hồ Chí Minh
+            </div>
+          </div>
+          <div class="page3-parents-divider"></div>
+          <div class="page3-parents-col right fade-in-right">
+            <div class="page3-parents-title">NHÀ GÁI</div>
+            <div class="page3-parents-content">
+              Ông. Võ Hồng Phúc<br>
+              Bà. Cao Thị Nguyệt Yến<br><br>
+              TP.Hồ Chí Minh
+            </div>
+          </div>
+        </div>
+        <div class="page3-invite fade-in-up">Thân mời đến dự lễ thành hôn của chúng tôi!</div>
+        <div class="page3-names">
+          <div class="page3-names-main">QUANG TRƯỜNG</div>
+          <span class="page3-names-and">&</span>
+          <div class="page3-names-main">YẾN NHI</div>
+        </div>
+      </div>
+    </div>
+    <div class="page4">
+      <div class="page4-label">Được tổ chức vào lúc</div>
+      <div class="page4-divider"></div>
+      <div class="page4-time-row">
+        <div class="page4-time-main">
+          <span class="page4-time-left fade-in-left">19:00 - THỨ NĂM</span>
+        </div>
+        <div class="page4-date fade-in-right">26.06.2025</div>
+      </div>
+      <div class="page4-divider"></div>
+      <div class="page4-label2">Địa điểm</div>
+      <div class="page4-place fade-in-up">GH.Complex</div>
+      <div class="page4-address" id="page4-address"></div>
+      <div class="page4-map-row" onclick="window.open('https://maps.app.goo.gl/ftRxeso9oNViGr9t7','_blank')">
+        <svg class="page4-map-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2C7.03 2 3 6.03 3 11c0 5.25 7.02 10.61 7.32 10.83.41.3.95.3 1.36 0C13.98 21.61 21 16.25 21 11c0-4.97-4.03-9-9-9zm0 18.54C10.14 19.07 5 15.14 5 11c0-3.87 3.13-7 7-7s7 3.13 7 7c0 4.14-5.14 8.07-7 9.54z" fill="#b3b1ae"/><circle cx="12" cy="11" r="2.5" fill="#b3b1ae"/></svg>
+        <span class="page4-map-text">Xem đường đi</span>
+      </div>
+    </div>
+    <div class="page4-album">
+      <img class="page4-album-flower" src="images/page2-flower.png" alt="Hoa đầu trang">
+      <div class="page4-album-title fade-in-up">
+        <span class="album-title-main">THE ALBUM</span>
+        <span class="album-title-of">OF</span>
+        <span class="album-title-main">LOVE</span>
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: flex-start; width: 100%; gap: 18px;">
+        <img class="album-img fade-in-right" src="images/album-img-bride.png" alt="Ảnh cô dâu" style="width: 60%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; background: #f6f5f2 !important; z-index:2;">
+        <div class="album-info album-col-bride fade-in-right"><br>
+          <div class="album-label">Cô Dâu</div>
+          <div class="album-name">YẾN NHI</div>
+          <div class="album-date">05.03.2001</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: flex-start; width: 100%; gap: 18px;">
+        <div class="album-info album-col-groom fade-in-left"><br>
+          <div class="album-label">Chú rể</div>
+          <div class="album-name">QUANG TRƯỜNG</div>
+          <div class="album-date">22.07.1999</div>
+        </div>
+        <img class="album-img fade-in-left" src="images/album-img-groom.png" alt="Ảnh chú rể" style="width: 60%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; background: #f6f5f2 !important; margin-left: -30px; z-index:1;">
+      </div>
+      <img class="album-img-wide" src="images/album-img-wide.png" alt="Ảnh ngang album">
+      <div class="gallery-container" style="width:100%;max-width:430px;margin:10px auto 0 auto;">
+        <div class="main-wrapper" style="position:relative;overflow:hidden;width:100%;aspect-ratio:2/3;border-radius:16px;box-shadow:0 4px 16px #0002;background:#f6f5f2;">
+          <div class="slider" id="slider" style="display:flex;height:100%;transition:transform 0.5s ease;"></div>
+          <button class="nav-button prev-button" style="position:absolute;top:50%;left:10px;transform:translateY(-50%);width:36px;height:36px;background:rgba(255,255,255,0.7);border:none;border-radius:50%;font-size:20px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px #0002;">
+            <img src="images/left-arrow.png" alt="Prev" style="width:22px;height:22px;object-fit:contain;" />
+          </button>
+          <button class="nav-button next-button" style="position:absolute;top:50%;right:10px;transform:translateY(-50%);width:36px;height:36px;background:rgba(255,255,255,0.7);border:none;border-radius:50%;font-size:20px;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px #0002;">
+            <img src="images/right-arrow.png" alt="Next" style="width:22px;height:22px;object-fit:contain;" />
+          </button>
+        </div>
+        <div class="pagination" id="pagination" style="text-align:center;margin-top:6px;font-size:12px;color:#555;"></div>
+        <div class="thumb-list" id="thumbList" style="display:flex;gap:6px;overflow-x:auto;margin:10px auto 0 auto;padding-bottom:8px;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;justify-content:center;max-width:100%;width:100%;"></div>
+      </div>
+      <script>
+        // Lấy 7 hình từ thư mục images/
+        const imageUrls = Array.from({length: 7}, (_, i) => `images/gallery-${i+1}.png`);
+        // Preload gallery images ngay khi trang load
+        imageUrls.forEach(src => {
+          const img = new window.Image();
+          img.src = src;
+        });
+        const slider = document.getElementById('slider');
+        const thumbList = document.getElementById('thumbList');
+        const pagination = document.getElementById('pagination');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        let current = 0;
+        let isAnimating = false;
+        // Create slider images and thumbnails
+        imageUrls.forEach((url, index) => {
+          // Create slider image
+          const img = document.createElement('img');
+          img.className = 'main-image';
+          img.src = url;
+          img.alt = `Wedding Image ${index + 1}`;
+          img.style.width = '100%';
+          img.style.height = '100%';
+          img.style.flexShrink = '0';
+          img.style.objectFit = 'contain';
+          img.style.background = '#f6f5f2';
+          img.style.borderRadius = '0';
+          img.style.imageRendering = 'auto';
+          slider.appendChild(img);
+          // Create thumbnail
+          const thumb = document.createElement('img');
+          thumb.className = 'thumb';
+          thumb.src = url;
+          thumb.alt = `Thumb ${index + 1}`;
+          thumb.style.width = '48px';
+          thumb.style.height = '48px';
+          thumb.style.borderRadius = '8px';
+          thumb.style.objectFit = 'cover';
+          thumb.style.opacity = '0.5';
+          thumb.style.cursor = 'pointer';
+          thumb.style.transition = '0.3s';
+          thumb.style.border = '2px solid transparent';
+          if (index === 0) thumb.classList.add('active');
+          thumb.addEventListener('click', () => {
+            if (!isAnimating && current !== index) {
+              navigateTo(index);
+            }
+          });
+          thumbList.appendChild(thumb);
+        });
+        const thumbs = document.querySelectorAll('.thumb');
+        updatePagination();
+        function navigateTo(newIndex) {
+          if (isAnimating) return;
+          isAnimating = true;
+          current = newIndex;
+          slider.style.transform = `translateX(-${current * 100}%)`;
+          thumbs.forEach((thumb, i) => {
+            thumb.classList.toggle('active', i === current);
+            thumb.style.opacity = i === current ? '1' : '0.5';
+            thumb.style.borderColor = i === current ? '#7e7d7b' : 'transparent';
+          });
+          if (!window.__autoSliding) {
+            const thumb = thumbs[current];
+            const thumbListRect = thumbList.getBoundingClientRect();
+            const thumbRect = thumb.getBoundingClientRect();
+            if (thumbRect.left < thumbListRect.left || thumbRect.right > thumbListRect.right) {
+              thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            }
+          }
+          updatePagination();
+          setTimeout(() => { isAnimating = false; }, 1000);
+        }
+        function updatePagination() {
+          pagination.textContent = `${current + 1} / ${imageUrls.length}`;
+        }
+        prevButton.addEventListener('click', () => {
+          const newIndex = (current - 1 + imageUrls.length) % imageUrls.length;
+          navigateTo(newIndex);
+        });
+        nextButton.addEventListener('click', () => {
+          const newIndex = (current + 1) % imageUrls.length;
+          navigateTo(newIndex);
+        });
+        // Touch and mouse swipe
+        let startX = 0;
+        let currentX = 0;
+        let isDragging = false;
+        slider.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; });
+        slider.addEventListener('touchend', (e) => { const endX = e.changedTouches[0].clientX; handleSwipe(endX); });
+        slider.addEventListener('mousedown', (e) => { isDragging = true; startX = e.clientX; currentX = startX; e.preventDefault(); });
+        document.addEventListener('mousemove', (e) => { if (!isDragging) return; currentX = e.clientX; });
+        document.addEventListener('mouseup', (e) => { if (!isDragging) return; isDragging = false; handleSwipe(e.clientX); });
+        function handleSwipe(endX) {
+          if (startX - endX > 50) {
+            const newIndex = (current + 1) % imageUrls.length;
+            navigateTo(newIndex);
+          } else if (endX - startX > 50) {
+            const newIndex = (current - 1 + imageUrls.length) % imageUrls.length;
+            navigateTo(newIndex);
+          }
+        }
+        // Auto-advance
+        setInterval(() => {
+          if (!isDragging && !isAnimating) {
+            window.__autoSliding = true;
+            const newIndex = (current + 1) % imageUrls.length;
+            navigateTo(newIndex);
+            setTimeout(() => { window.__autoSliding = false; }, 500);
+          }
+        }, 4000);
+        // Tối ưu hiệu ứng chuyển slider
+        slider.style.transition = 'transform 0.5s cubic-bezier(0.4,0,0.2,1)';
+      </script>
+    </div>
+    <div class="page5">
+      <img class="page5-flower" src="images/page2-flower.png" alt="Hoa đầu trang" style="width:100%;display:block;object-fit:cover;">
+      <div class="page5-dresscode-title" style="font-family:'Perandory Condensed',serif;font-size:32px;color:#7e7d7b;text-transform:uppercase;text-align:center;margin-bottom:5px;">DRESS CODE</div>
+      <div class="page5-dresscode-shapes" style="display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:18px;">
+        <div style="width:38px;height:38px;border-radius:50%;background:#f0ebe3;border:1px solid #292929;"></div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#fbe2e6;border:1px solid #292929;"></div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#f7c9d1;border:1px solid #292929;"></div>
+        <div style="width:38px;height:38px;border-radius:50%;background:#292929;border:1px solid #292929;"></div>
+      </div>
+      <div class="page5-gif-wrapper" style="width:100%;max-width:430px;height:182px;margin:0 auto 18px auto;overflow:hidden;box-shadow:0 2px 12px #0001;background:#f6f5f2;display:flex;align-items:center;justify-content:center;">
+        <img src="images/page5-gif.gif" alt="Dress code gif" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+      <div class="page5-confirm-text" style="font-family:'Noto Serif Display',serif;font-size:12px;color:#7e7d7b;text-align:center;line-height:1.7;margin:0 12px 0 12px;">
+        Bằng việc xác nhận sự có mặt của bạn trước ngày <b style='font-weight:700;'>20.06.2025</b><br>
+        Chúng mình có thể đón tiếp bạn một cách chu đáo nhất.<br>
+        Trân trọng!
+      </div>
+    </div>
+    <div class="page6" style="width:100%;max-width:430px;background:#f6f5f2;border-radius:0;overflow:visible;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;margin:0 auto;padding:0px 1px 0 1px;box-sizing:border-box;">
+      <div class="form-wrapper" style="width:100%;">
+        <div class="page6-form-section" style="width:100%;display:flex;flex-direction:column;gap:10px;margin-top:24px;">
+          <input type="text" placeholder="Họ và tên của bạn *" class="form-input-normal" style="width:100%;padding:14px;border:1px solid #b3b1ae;border-radius:10px;font-family:'Noto Serif Display',serif;font-size:12px;color:#7e7d7b;background:#f6f5f2;outline:none;font-weight:normal;box-sizing:border-box;">
+          <textarea placeholder="Gửi lời nhắn đến cô dâu chú rể" rows="5" class="form-input-normal" style="width:100%;padding:14px;border:1px solid #b3b1ae;border-radius:10px;font-family:'Noto Serif Display',serif;font-size:12px;color:#7e7d7b;background:#f6f5f2;outline:none;resize:vertical;font-weight:normal;box-sizing:border-box;"></textarea>
+          <select class="form-input-normal" style="width:100%;padding:14px;border:1px solid #b3b1ae;border-radius:10px;font-family:'Noto Serif Display',serif;font-size:12px;color:#7e7d7b;background:#f6f5f2;outline:none;font-weight:normal;box-sizing:border-box;">
+            <option value="" disabled selected hidden>Bạn sẽ đến chung vui cùng chúng mình chứ? *</option>
+            <option value="yes">Chắc chắn rồi!</option>
+            <option value="no">Rất tiếc! Mình không thể tham dự</option>
+          </select>
+          <select class="form-input-normal" style="width:100%;padding:14px;border:1px solid #b3b1ae;border-radius:10px;font-family:'Noto Serif Display',serif;font-size:12px;color:#7e7d7b;background:#f6f5f2;outline:none;font-weight:normal;box-sizing:border-box;">
+            <option value="" disabled selected hidden>Bạn tham dự cùng ai? *</option>
+            <option value="alone">Mình đến tham dự 1 mình</option>
+            <option value="friend">Mình đến tham dự cùng bạn</option>
+            <option value="partner">Mình đến tham dự cùng vợ, chồng mình</option>
+            <option value="family">Mình đến tham dự cùng gia đình mình</option>
+          </select>
+          <button class="page6-submit-button">GỬI LỜI NHẮN & XÁC NHẬN</button>
+        </div>
+      </div>
+      <!-- hộp mừng cưới -->
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;margin-top:38px;margin-bottom:10px;">
+        <div style="font-family:'Noto Serif Display',serif;font-size:30px;color:#faa3b1;text-align:center;font-weight:400;text-transform:none;">Hộp mừng cưới</div>
+        <div style="margin:12px 0 18px 0;">
+          <svg width="120" height="24" viewBox="0 0 120 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="12" x2="50" y2="12" stroke="#ffb6b6" stroke-width="2" stroke-linecap="round"/>
+            <line x1="70" y1="12" x2="110" y2="12" stroke="#ffb6b6" stroke-width="2" stroke-linecap="round"/>
+            <rect x="54" y="6" width="12" height="12" rx="3" stroke="#ffb6b6" stroke-width="2" fill="none"/>
+            <line x1="60" y1="6" x2="60" y2="18" stroke="#ffb6b6" stroke-width="2"/>
+            <line x1="54" y1="12" x2="66" y2="12" stroke="#ffb6b6" stroke-width="2"/>
+          </svg>
+        </div>
+        <div style="font-family:'Noto Serif Display',serif;font-size:12px;color:#7e7d7b;text-align:center;line-height:1.7;margin:0 12px 18px 12px;">
+          Nếu có thể, bạn hãy tới tham dự Đám cưới, chung vui và Mừng cưới trực tiếp cho chúng mình nha 🥰.<br>Cảm ơn bạn rất nhiều!
+        </div>
+        <div style="width:100%;max-width:350px;background:#faa3b1;border-radius:16px;padding:24px 18px 18px 18px;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;margin:0 auto 0 auto;">
+          <div style="font-family:'Noto Serif Display',serif;font-size:18px;color:#fff;text-align:center;font-weight:700;margin-bottom:12px;">Mừng cưới đến cô dâu, chú rể</div>
+          <div style="display:flex;flex-direction:row;justify-content:center;align-items:flex-start;gap:18px;width:100%;">
+            <!-- QR 1 -->
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;">
+              <img src="images/qr1.png" alt="QR mừng cưới cô dâu" style="width:120px;height:120px;object-fit:contain;background:#fff;border-radius:8px;margin-bottom:10px;box-shadow:0 2px 8px #0001;">
+              <div style="font-family:'Noto Serif Display',serif;font-size:13px;color:#fff;text-align:center;line-height:1.6;">
+                Ngân hàng: ACB<br>
+                Tên: Cao Thị Yến Nhi<br>
+                STK: 33936787
+              </div>
+            </div>
+            <!-- QR 2 -->
+            <div style="display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;">
+              <img src="images/qr2.png" alt="QR mừng cưới chú rể" style="width:120px;height:120px;object-fit:contain;background:#fff;border-radius:8px;margin-bottom:10px;box-shadow:0 2px 8px #0001;">
+              <div style="font-family:'Noto Serif Display',serif;font-size:13px;color:#fff;text-align:center;line-height:1.6;">
+                Ngân hàng: Sacombank<br>
+                Tên: Bùi Quang Trường<br>
+                STK: 22071999
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Hộp mừng cưới -->
+      <div class="thank-you-message" style="font-family:'Andasia',cursive;font-size:50px;color:#7e7d7b;text-align:center;margin-top:5px;margin-bottom:10px;animation:scaleThankYou 2s infinite alternate;">Thank you!</div>
+    </div>
+  </div>
+  <script>
+    // Hiệu ứng xuất hiện khi scroll: add/remove .active
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
+        rect.bottom >= 0
+      );
+    }
+    let addressAnimated = false;
+    function animateAddress() {
+      if (addressAnimated) return;
+      const address = '319/15 Bình Quới, Phường 28, Quận Bình Thạnh, Hồ Chí Minh';
+      const addressEl = document.getElementById('page4-address');
+      if (addressEl && isElementInViewport(addressEl)) {
+        addressEl.innerHTML = '';
+        for (let i = 0; i < address.length; i++) {
+          const span = document.createElement('span');
+          if (address[i] === ' ') {
+            span.innerHTML = '&nbsp;';
+          } else {
+            span.textContent = address[i];
+          }
+          span.style.animationDelay = (2.1 + i * 0.04) + 's';
+          addressEl.appendChild(span);
+        }
+        addressAnimated = true;
+      }
+    }
+    function handleScrollAnimation() {
+      const elements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .fade-in-up, .fade-in-down');
+      elements.forEach(element => {
+        if (isElementInViewport(element)) {
+          element.classList.add('active');
+        } else {
+          element.classList.remove('active');
+        }
+      });
+      animateAddress();
+    }
+    window.addEventListener('scroll', handleScrollAnimation);
+    // Thêm script để khi người dùng nhập/chọn thì in đậm
+    document.querySelectorAll('.form-input-normal').forEach(function(el) {
+      el.addEventListener('input', function() {
+        if (el.value && el.value.trim() !== '') {
+          el.classList.add('filled');
+        } else {
+          el.classList.remove('filled');
+        }
+      });
+      // Đối với select, cần lắng nghe change
+      if (el.tagName === 'SELECT') {
+        el.addEventListener('change', function() {
+          if (el.value && el.value.trim() !== '') {
+            el.classList.add('filled');
+          } else {
+            el.classList.remove('filled');
+          }
+        });
+      }
+    });
+    document.querySelector('.page6-submit-button').onclick = function(e) {
+      e.preventDefault();
+      const formSection = document.querySelector('.page6-form-section');
+      const inputs = formSection.querySelectorAll('input, textarea, select');
+      const data = {};
+      inputs.forEach(input => {
+        if (input.type === 'select-one') {
+          data[input.options[0].text] = input.value;
+        } else {
+          data[input.placeholder] = input.value;
+        }
+      });
+      fetch('https://wedding-qt-yn.onrender.com/submit', { // Thay <YOUR_RENDER_URL> bằng link Render sau khi deploy
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(res => res.json()).then(result => {
+        if (result.success) {
+          alert('Gửi thành công!');
+          document.querySelector('.form-wrapper').style.display = 'none';
+        }
+        else alert('Có lỗi xảy ra!');
+      });
+    };
+    // Khi load trang, scroll về đầu trang và chạy hiệu ứng cho các phần tử ở đầu trang
+    window.onload = function() {
+      window.scrollTo(0, 0);
+      setTimeout(handleScrollAnimation, 100); // Đảm bảo hiệu ứng đầu trang chạy đúng
+    };
+  </script>
+</body>
+</html>
