@@ -10,5 +10,11 @@
     "Gửi lời nhắn đến cô dâu chú rể": "",
     "Bạn sẽ đến chung vui cùng chúng mình chứ? *": "yes",
     "Bạn tham dự cùng ai? *": "alone"
+  },
+  {
+    "Họ và tên của bạn *": "Duy test scheduler",
+    "Gửi lời nhắn đến cô dâu chú rể": "scheduler thời gian nhập 6:00",
+    "Bạn sẽ đến chung vui cùng chúng mình chứ? *": "yes",
+    "Bạn tham dự cùng ai? *": "partner"
   }
 ]
